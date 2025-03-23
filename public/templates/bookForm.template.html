@@ -1,0 +1,28 @@
+<form id="{{#isEdit}}editBookForm{{/isEdit}}{{^isEdit}}addBookForm{{/isEdit}}" 
+      {{#isEdit}}hx-put="/books/{{book.id}}" hx-target="#book-{{book.id}}" hx-swap="outerHTML"{{/isEdit}}
+      {{^isEdit}}hx-post="/books" hx-target="#book-list" hx-swap="beforeend"{{/isEdit}}>
+  <div class="mb-3">
+    <label for="title" class="form-label fw-bold">Book Title</label>
+    <input type="text" class="form-control" 
+           id="title" 
+           name="title" 
+           value="{{book.title}}" 
+           placeholder="Enter book title" required>
+  </div>
+  <div class="mb-3">
+    <label for="author" class="form-label fw-bold">Author</label>
+    <input type="text" class="form-control" 
+           id="author" 
+           name="author" 
+           value="{{book.author}}" 
+           placeholder="Enter author name" required>
+  </div>
+  <div class="d-flex justify-content-end gap-2">
+    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
+      <i class="bi bi-x-circle me-2"></i>Cancel
+    </button>
+    <button type="submit" class="btn btn-primary">
+      <i class="bi bi-save me-2"></i>{{#isEdit}}Update{{/isEdit}}{{^isEdit}}Save{{/isEdit}} Book
+    </button>
+  </div>
+</form> 
